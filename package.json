@@ -1,11 +1,11 @@
 {
-  "name": "@choizapp/mcp-account",
-  "version": "0.1.1",
+  "name": "@choiz/mcp-account",
+  "version": "0.1.3",
   "description": "MCP server for Choiz account management (change email, reset password, toggle subscriptions)",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "choiz-mcp-account": "dist/index.js"
+    "mcp-account": "dist/index.js"
   },
   "files": [
     "dist"
@@ -24,8 +24,7 @@
     "url": "https://github.com/Choizapp/choiz-mcp.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
