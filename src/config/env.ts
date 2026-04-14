@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 const envSchema = z.object({
-  MCP_API_KEY: z.string().min(1),
   CHOIZ_ADMIN_EMAIL: z.string().email(),
   CHOIZ_ADMIN_PASSWORD: z.string().min(1),
   LOGIN_CORE_BASE_URL: z.string().url(),
