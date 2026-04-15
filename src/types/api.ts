@@ -74,6 +74,51 @@ export interface CustomerDTO {
   [key: string]: unknown;
 }
 
+// Order DTOs (choiz-core)
+export interface OrderDTO {
+  id?: number;
+  statusId?: number;
+  status?: string;
+  statusEs?: string;
+  substateId?: number;
+  substate?: string;
+  comboId?: number;
+  treatment?: { id?: number; name?: string; [key: string]: unknown };
+  client?: { id?: number; email?: string; name?: string; [key: string]: unknown };
+  deliveryDate?: string;
+  street?: string;
+  streetNumber?: string;
+  city?: string;
+  province?: string;
+  zipCode?: string;
+  trackingUrl?: string;
+  trackingId?: string;
+  carrier?: string;
+  shippingCost?: number;
+  recurrent?: boolean;
+  created?: string;
+  modified?: string;
+  [key: string]: unknown;
+}
+
+export interface ChangeRefillRequest {
+  from: string; // yyyy-MM-dd
+  to: string; // yyyy-MM-dd
+  nextDeliveryDate: string; // yyyy-MM-dd
+  clientIdList?: number[];
+  treatmentId?: number;
+}
+
+export interface ChangeRefillResult {
+  [key: string]: unknown;
+}
+
+// Merge accounts (login-core direct)
+export interface MergeAccountRequest {
+  userName: string; // email
+  phone: string;
+}
+
 // Generic response
 export interface MessageResponse {
   message: string;

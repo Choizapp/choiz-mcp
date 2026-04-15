@@ -1,5 +1,9 @@
 import { ApiError } from '../errors/api-error.js';
-import type { CredentialDTO, ResetPasswordByAdminRequest } from '../types/api.js';
+import type {
+  CredentialDTO,
+  MergeAccountRequest,
+  ResetPasswordByAdminRequest,
+} from '../types/api.js';
 import { BaseClient } from './base-client.js';
 
 export class LoginCoreClient extends BaseClient {
@@ -34,6 +38,15 @@ export class LoginCoreClient extends BaseClient {
     await this.request({
       method: 'PUT',
       path: '/login/admin/credentials/reset-password',
+      body,
+      jwt,
+    });
+  }
+
+  async mergeAccounts(body: MergeAccountRequest, jwt: string): Promise<void> {
+    await this.request({
+      method: 'POST',
+      path: '/login/admin/credentials/merge',
       body,
       jwt,
     });
