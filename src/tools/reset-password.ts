@@ -13,13 +13,13 @@ type Input = { email: string; newPassword: string };
 export const resetPasswordTool = {
   name: 'reset_password',
   description:
-    'Admin-reset a user password. Calls login-core /admin/credentials/reset-password. Side effects: sets isPasswordSet=true, source=LOCAL, records the admin username in passwordModifiedBy.',
+    'Admin-reset a user password. Calls choiz-core /account-access/admin/users/reset-password which proxies to login-core. Side effects: sets isPasswordSet=true, source=LOCAL, records the admin username in passwordModifiedBy.',
   inputShape: resetPasswordInputShape,
   handler: async (input: Input): Promise<CallToolResult> => {
     const ctx = getContext();
     const jwt = await getJwt();
     try {
-      await ctx.loginCore.resetPasswordAsAdmin(input.email, input.newPassword, jwt);
+      await ctx.choizCore.resetPasswordAsAdmin(input.email, input.newPassword, jwt);
       return toolResult(
         `Password reset for ${input.email}. The account is now active (isPasswordSet=true) and source=LOCAL. Recorded admin: ${getUsername()}.`,
       );

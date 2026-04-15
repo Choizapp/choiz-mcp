@@ -4,6 +4,7 @@ import type {
   ChangeRefillRequest,
   ChangeRefillResult,
   OrderDTO,
+  ResetPasswordByAdminRequest,
 } from '../types/api.js';
 import { BaseClient, type ClientOptions } from './base-client.js';
 
@@ -17,6 +18,16 @@ export class ChoizCoreClient extends BaseClient {
   constructor(opts: ChoizCoreClientOptions) {
     super(opts);
     this.checkoutApiKey = opts.checkoutApiKey;
+  }
+
+  async resetPasswordAsAdmin(userName: string, password: string, jwt: string): Promise<void> {
+    const body: ResetPasswordByAdminRequest = { userName, password };
+    await this.request({
+      method: 'PUT',
+      path: '/account-access/admin/users/reset-password',
+      body,
+      jwt,
+    });
   }
 
   async changeEmail(oldEmail: string, newEmail: string, jwt: string): Promise<void> {
